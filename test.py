@@ -11,24 +11,32 @@ from PyQt4 import QtGui, QtCore
 class GUI(QtGui.QMainWindow):
 
     def __init__(self):
-        super(Example, self).__init__()
+        super(GUI, self).__init__()
 
         self.initUI()
 
     def initUI(self):
 
-        btn1 = QtGui.QPushButton("Button 1", self)
+        btn1 = QtGui.QPushButton("LED1", self)
         btn1.move(30, 50)
 
-        btn2 = QtGui.QPushButton("Button 2", self)
+        btn2 = QtGui.QPushButton("LED2", self)
         btn2.move(150, 50)
+
+        btn3 = QtGui.QPushButton("LED3", self)
+        btn3.move(270, 50)
+
+        btn4 = QtGui.QPushButton("LED4", self)
+        btn4.move(390, 50)
 
         btn1.clicked.connect(self.buttonClicked)
         btn2.clicked.connect(self.buttonClicked)
+        btn3.clicked.connect(self.buttonClicked)
+        btn4.clicked.connect(self.buttonClicked)
 
         self.statusBar()
 
-        self.setGeometry(300, 300, 290, 150)
+        self.setGeometry(500, 500, 520, 150)
         self.setWindowTitle('Event sender')
         self.show()
 
