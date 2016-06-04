@@ -42,7 +42,7 @@ def funcionS2():
 
 def enviar():
     if switch1["text"]=="1" and switch2["text"]=="1":
-        # ser.write(bytes('e', 'UTF-8'))
+        # ser.write(bytes('d', 'UTF-8'))
         print('F4')
     elif switch1["text"]=="0" and switch2["text"]=="0":
         # ser.write(bytes('a', 'UTF-8'))
@@ -50,7 +50,7 @@ def enviar():
 
 def enviar2():
     if switch1["text"]=="1" and switch2["text"]=="1":
-        # ser.write(bytes('f', 'UTF-8'))
+        # ser.write(bytes('c', 'UTF-8'))
         print('F4')
     elif switch1["text"]=="0" and switch2["text"]=="0":
         # ser.write(bytes('z', 'UTF-8'))
@@ -70,11 +70,11 @@ def barrita2(val):
 
 def barrita1checkb():
     print var1.get()
-    #ser.write(bytes('f', 'UTF-8'))
+    #ser.write(bytes('s', 'UTF-8'))
 
 def barrita2checkb():
     print var2.get()
-    #ser.write(bytes('v', 'UTF-8'))
+    #ser.write(bytes('x', 'UTF-8'))
 
 control=Tk()
 control.geometry("215x300")
