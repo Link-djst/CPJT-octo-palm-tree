@@ -39,17 +39,16 @@ def funcionS2():
         switch2.config(relief="sunken")
         switch2["text"] = "1"
 
-def enviar():
 
+def enviar():
     if switch1["text"]=="1" and switch2["text"]=="1":
-        ser.write(bytes('e', 'UTF-8'))
+        # ser.write(bytes('e', 'UTF-8'))
         print('ON')
     elif switch1["text"]=="0" and switch2["text"]=="0":
-        ser.write(bytes('a', 'UTF-8'))
+        # ser.write(bytes('a', 'UTF-8'))
         print('OFF')
 
 def enviar2():
-
     if switch1["text"]=="1" and switch2["text"]=="1":
         # ser.write(bytes('f', 'UTF-8'))
         print('ON')
@@ -63,24 +62,26 @@ def barrita1(val):
         print val
         #ser.write(bytearray([5,int(val)]))
 
+def barrita1checkb():
+    print var.get()
 
 control=Tk()
-control.geometry("200x300")
+control.geometry("215x300")
 control.title("Interfaz Remota")
+var1 = IntVar()
 
 #Widgets
 mensaje1=Label(control,text="Interfaz Grafica", textvariable="entrada")
 toggle_btn = Button(text="Local", width=12, relief="raised",command=toggle)
 
-switch1 = Button(text="0", width=12, relief="raised",command=funcionS)
-switch2 = Button(text="0", width=12, relief="raised",command=funcionS2)
+switch1 = Button(text="0", width=12, relief="raised",bg="#00ACC1",command=funcionS)
+switch2 = Button(text="0", width=12, relief="raised", bg="#00ACC1",command=funcionS2)
 
-led1 = Button(text="1", height=5, width=5, bg="yellow", command=enviar)
-led2 = Button(text="2", height=5, width=5, bg="red", command=enviar2)
-
-
+led1 = Button(text="1", height=5, width=5, bg="#04CAE2", command=enviar)
+led2 = Button(text="2", height=5, width=5, bg="#04CAE2", command=enviar2)
 
 w1 = Scale(control, from_=0, to=100, resolution=1,orient=HORIZONTAL, command=barrita1)
+b1 = Checkbutton(control, text="Barra 1", variable=var1,command=barrita1checkb)
 w2 = Scale(control, from_=0, to=100, resolution=1,orient=HORIZONTAL)
 entradaA = Entry(control, bd=5)
 
@@ -95,8 +96,9 @@ led1.place(x=10,y=175)
 led2.place(x=55,y=175)
 
 
-w1.place(x=40,y=45)
-w2.place(x=40,y=90)
+w1.place(x=20,y=45)
+b1.place(x=130, y=62.5)
+w2.place(x=20,y=90)
 
 entradaA.place(x=1110,y=30)
 
