@@ -13,11 +13,14 @@ Funcion1:
 --:z
 
 Funcion2:
+
 Checkbutton:s
 
 Funcion3:
+
 Checkbutton:x
 
 Funcion4:
+
 LEDS aleatorios:d
 LEDS All Pr:c
