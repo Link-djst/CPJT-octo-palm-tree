@@ -3,10 +3,14 @@
 #Diego Sosa
 
 import serial
-from tkinter import*
-import tkinter
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 
-ser = serial.Serial('COM6', 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE)
+# ser = serial.Serial('COM6', 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE)
 
 def toggle():
 
@@ -40,12 +44,6 @@ def enviar():
     if switch1["text"]=="1" and switch2["text"]=="1":
         ser.write(bytes('e', 'UTF-8'))
         print('ON')
-    elif switch1["text"]=="1" and switch2["text"]=="0":
-        ser.write(bytes(' ', 'UTF-8'))
-        print('NADA')
-    elif switch1["text"]=="0" and switch2["text"]=="1":
-        ser.write(bytes(' ', 'UTF-8'))
-        print('DOUBLETIEF')
     elif switch1["text"]=="0" and switch2["text"]=="0":
         ser.write(bytes('a', 'UTF-8'))
         print('OFF')
@@ -53,33 +51,18 @@ def enviar():
 def enviar2():
 
     if switch1["text"]=="1" and switch2["text"]=="1":
-        ser.write(bytes('f', 'UTF-8'))
+        # ser.write(bytes('f', 'UTF-8'))
         print('ON')
-    elif switch1["text"]=="1" and switch2["text"]=="0":
-        ser.write(bytes(' ', 'UTF-8'))
-        print('NADA')
-    elif switch1["text"]=="0" and switch2["text"]=="1":
-        ser.write(bytes(' ', 'UTF-8'))
-        print('DOUBLETIEF')
     elif switch1["text"]=="0" and switch2["text"]=="0":
-        ser.write(bytes('z', 'UTF-8'))
+        # ser.write(bytes('z', 'UTF-8'))
         print('OFF')
 
 def barrita1(val):
 
-    if switch1["text"]=="1" and switch2["text"]=="1":
-        ser.write(bytes(' ', 'UTF-8'))
-        print('ON')
-    elif switch1["text"]=="1" and switch2["text"]=="0":
-        print (bytearray([6,int(val)]))
-        ser.write(bytearray([6,int(val)]))
-        print('NADA')
-    elif switch1["text"]=="0" and switch2["text"]=="1":
-        print (bytearray([5,int(val)]))
-        ser.write(bytearray([5,int(val)]))
-    elif switch1["text"]=="0" and switch2["text"]=="0":
-        ser.write(bytes(' ', 'UTF-8'))
-        print('OFF')
+    if switch1["text"]=="0" and switch2["text"]=="1":
+        print val
+        #ser.write(bytearray([5,int(val)]))
+
 
 control=Tk()
 control.geometry("200x300")
