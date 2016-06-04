@@ -9,6 +9,7 @@ Recodar descomentar las funciones del Servo, y colocar correctamente el puerto C
 Envio de caracteres par las funciones de Arduino
 
 Funcion1:
+
 ++:a
 --:z
 
