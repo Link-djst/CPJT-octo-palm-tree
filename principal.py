@@ -57,18 +57,24 @@ def enviar2():
         print('OFF')
 
 def barrita1(val):
-
     if switch1["text"]=="0" and switch2["text"]=="1":
-        print val
-        #ser.write(bytearray([5,int(val)]))
+        if (var1.get() == 1):
+            print val
+            #ser.write(bytes(val, 'UTF-8'))
 
 def barrita1checkb():
-    print var.get()
+    print var1.get()
+    #ser.write(bytes('f', 'UTF-8'))
+
+def barrita2checkb():
+    print var2.get()
+    #ser.write(bytes('v', 'UTF-8'))
 
 control=Tk()
 control.geometry("215x300")
 control.title("Interfaz Remota")
 var1 = IntVar()
+var2 = IntVar()
 
 #Widgets
 mensaje1=Label(control,text="Interfaz Grafica", textvariable="entrada")
@@ -83,6 +89,7 @@ led2 = Button(text="2", height=5, width=5, bg="#04CAE2", command=enviar2)
 w1 = Scale(control, from_=0, to=100, resolution=1,orient=HORIZONTAL, command=barrita1)
 b1 = Checkbutton(control, text="Barra 1", variable=var1,command=barrita1checkb)
 w2 = Scale(control, from_=0, to=100, resolution=1,orient=HORIZONTAL)
+b2 = Checkbutton(control, text="Barra 2", variable=var2,command=barrita2checkb)
 entradaA = Entry(control, bd=5)
 
 #Posiciones
@@ -99,6 +106,7 @@ led2.place(x=55,y=175)
 w1.place(x=20,y=45)
 b1.place(x=130, y=62.5)
 w2.place(x=20,y=90)
+b2.place(x=130, y=107.5)
 
 entradaA.place(x=1110,y=30)
 
