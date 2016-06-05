@@ -30,6 +30,9 @@ int contadorGradualmente = 1;
 bool bottonPrimeraVezPresionado = false;
 int randomNumberForPins;
 bool bottonSegundaVezPresionado = false;
+
+bool ServoOn = false;
+
 int numeroEstatico;
 bool todosEnsendidos;
 bool funcion2On = false;
@@ -126,7 +129,7 @@ void Funcion1(int button) {
      El Servo se mueve solo de un lado a otro. El potenciómetro controla la velocidad de
      movimiento. Los LEDs deben encenderse dependiendo de la posición del servo
 */
-void Funcion2(ServoOn) {
+void Funcion2(bool ServoOn) {
   if(ServoOn){
     servoVelocidad = int(mssg);
     if (servoDireccion)
@@ -144,7 +147,7 @@ void Funcion2(ServoOn) {
       }
 
     }
-    delay(servoVelocidad*5);
+    delay(servoVelocidad*10);
     servoUsado.write(posicionDelServo);
   }
 }
