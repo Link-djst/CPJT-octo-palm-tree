@@ -92,23 +92,7 @@ void loop()
         LEDsOn = false;
         break;
     }
-    if (!todosEnsendidos) {
-      //funcion 4 tiene que continuar fuera de su funcion
-      if (bottonPrimeraVezPresionado && !bottonSegundaVezPresionado) {
-        randomNumberForPins = pow(2, random(0, 3));
-        Transformador(randomNumberForPins);
-        delay(50);
-      }
-      if (bottonSegundaVezPresionado && !todosEnsendidos) {
-        Transformador(numeroEstatico);
-      }
-    }
   }
-  digitalWrite(11, d);
-  digitalWrite(6, c);
-  digitalWrite(5, b);
-  digitalWrite(3, a);
-  todosEnsendidos = false;
   Funcion2(ServoOn);
   Funcion3(LEDsOn);
 }
@@ -229,4 +213,9 @@ void Transformador(int numeroParaTransformar)
   b = numeroParaTransformar / 2 % 2;
   c = numeroParaTransformar / 4 % 2;
   d = numeroParaTransformar / 8 % 2;
+
+  digitalWrite(11, d);
+  digitalWrite(6, c);
+  digitalWrite(5, b);
+  digitalWrite(3, a);
 }
