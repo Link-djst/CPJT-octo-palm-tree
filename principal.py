@@ -70,11 +70,17 @@ def barrita2(val):
 
 def barrita1checkb():
     print var1.get()
-    ser.write(bytes('s'))
+    if(var1.get() == 1):
+        ser.write(bytes('s'))
+    else:
+        ser.write(bytes('f'))
 
 def barrita2checkb():
     print var2.get()
-    ser.write(bytes('x'))
+    if(var2.get() == 1):
+        ser.write(bytes('x'))
+    else:
+        ser.write(bytes('v'))
 
 control=Tk()
 control.geometry("215x300")

@@ -32,6 +32,7 @@ int randomNumberForPins;
 bool bottonSegundaVezPresionado = false;
 
 bool ServoOn = false;
+bool LEDsOn = false;
 
 int numeroEstatico;
 bool todosEnsendidos;
@@ -66,27 +67,29 @@ void loop()
     //switch para ver cual funcion se usa
     switch (mssg) {
       case 'a':
-        ServoOn = false;
         Funcion1(1);
         break;
       case 'z':
-        ServoOn = false;
         Funcion1(2);
         break;
       case 's':
         ServoOn = true;
         break;
       case 'x':
-        ServoOn = false;
+        LEDsOn = true;
         Funcion3();
         break;
       case 'd':
-        ServoOn = false;
         Funcion4(1);
         break;
       case 'c':
-        ServoOn = false;
         Funcion4(2);
+        break;
+      case 'f':
+        ServoOn = false;
+        break;
+      case 'v':
+        LEDsOn = false;
         break;
     }
     if (!todosEnsendidos) {
@@ -107,6 +110,7 @@ void loop()
   digitalWrite(3, a);
   todosEnsendidos = false;
   Funcion2(ServoOn);
+  Funcion3(LEDsOn);
 }
 /*
      Función 01:
@@ -156,12 +160,45 @@ void Funcion2(bool ServoOn) {
     El potenciómetro enciende los LEDs en orden (de un lado a otro), pero los va encendiendo
     gradualmente.
 */
-void Funcion3() {
-  bottonPrimeraVezPresionado = false;
-  potenciometroMap = int(mssg);
-  potenciometroMap = map (potenciometroMap, 0, 1023, 1, 4);
-  contadorGradualmente = pow(2, potenciometroMap) - 1;
-  Transformador(contadorGradualmente);
+void Funcion3(bool LEDsOn) {
+  if(LEDsOn){
+    int ledsf3 = int(mssg);
+    if(ledsf3 == 0)
+    {
+      digitalWrite(11, 0);
+      digitalWrite(6, 0);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(ledsf3 == 1)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 0);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(ledsf3 == 2)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(ledsf3 == 3)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 1);
+      digitalWrite(3, 0);
+    }
+    if(ledsf3 == 4)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 1);
+      digitalWrite(3, 1);
+    }
+  }
 }
 /*
     Función 04:
