@@ -42,31 +42,31 @@ def funcionS2():
 
 def enviar():
     if switch1["text"]=="1" and switch2["text"]=="1":
-        # ser.write(bytes('d', 'UTF-8'))
+        # ser.write(bytes('d')
         print('F4')
     elif switch1["text"]=="0" and switch2["text"]=="0":
-        # ser.write(bytes('a', 'UTF-8'))
+        # ser.write(bytes('a')
         print('++')
 
 def enviar2():
     if switch1["text"]=="1" and switch2["text"]=="1":
-        # ser.write(bytes('c', 'UTF-8'))
+        # ser.write(bytes('c')
         print('F4')
     elif switch1["text"]=="0" and switch2["text"]=="0":
-        # ser.write(bytes('z', 'UTF-8'))
+        # ser.write(bytes('z')
         print('--')
 
 def barrita1(val):
     if switch1["text"]=="0" and switch2["text"]=="1":
         if (var1.get() == 1):
             print val
-            #ser.write(bytes(val, 'UTF-8'))
+            #ser.write(bytes(val))
 
 def barrita2(val):
     if switch1["text"]=="1" and switch2["text"]=="0":
         if (var2.get() == 1):
             print val
-            #ser.write(bytes(val, 'UTF-8'))
+            #ser.write(bytes(val)
 
 def barrita1checkb():
     print var1.get()

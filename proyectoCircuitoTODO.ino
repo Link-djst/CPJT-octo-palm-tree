@@ -7,7 +7,7 @@
 */
 #include <Servo.h>
 
-byte mssg[2]; //variable para guardar el mensaje
+int mssg; //variable para guardar el mensaje
 bool local;
 //contadorBinario
 int a;
@@ -58,34 +58,32 @@ void loop()
 {
   if (Serial.available() > 0)
   {
-    //Serial.readBytes(mssg,2);
-    mssg[0] = Serial.read();
-    mssg[1] = Serial.read();
+    mssg = Serial.read();
 
     //switch para ver cual funcion se usa
-    switch (mssg[0]) {
+    switch (mssg) {
       case 'a':
+        ServoOn = false;
         Funcion1(1);
-        funcion2On = false;
         break;
       case 'z':
+        ServoOn = false;
         Funcion1(2);
-        funcion2On = false;
         break;
-      case '5':
-        Funcion2();
+      case 's':
+        ServoOn = true;
+        break;
+      case 'x':
+        ServoOn = false;
+        Funcion3();
         break;
       case 'd':
-        Funcion3();
-        funcion2On = false;
-        break;
-      case 'f':
+        ServoOn = false;
         Funcion4(1);
-        funcion2On = false;
         break;
-      case 'g':
+      case 'c':
+        ServoOn = false;
         Funcion4(2);
-        funcion2On = false;
         break;
     }
     if (!todosEnsendidos) {
@@ -100,30 +98,12 @@ void loop()
       }
     }
   }
-   if (funcion2On) {
-      if (servoDireccion)
-      {
-        posicionDelServo += 20;
-        if (posicionDelServo >= 180) {
-          servoDireccion = false;
-        }
-      }
-      else
-      {
-        posicionDelServo -= 20;
-        if (posicionDelServo <= 0 ) {
-          servoDireccion = true;
-        }
-
-      }
-      delay(servoVelocidad*10);
-      servoUsado.write(posicionDelServo);
-    }
   digitalWrite(11, d);
   digitalWrite(6, c);
   digitalWrite(5, b);
   digitalWrite(3, a);
   todosEnsendidos = false;
+  Funcion2(ServoOn);
 }
 /*
      Función 01:
@@ -146,45 +126,27 @@ void Funcion1(int button) {
      El Servo se mueve solo de un lado a otro. El potenciómetro controla la velocidad de
      movimiento. Los LEDs deben encenderse dependiendo de la posición del servo
 */
-void Funcion2() {
-  funcion2On = true;
-    servoVelocidad = int(mssg[1]);
-  if (servoDireccion)
-  {
-    posicionDelServo += 20;
-    if (posicionDelServo >= 180) {
-      servoDireccion = false;
-    }
-  }
-  else
-  {
-    posicionDelServo -= 20;
-    if (posicionDelServo <= 0 ) {
-      servoDireccion = true;
-    }
-
-  }
-  delay(servoVelocidad*10);
-  servoUsado.write(posicionDelServo);
-
-  /*bottonPrimeraVezPresionado = false;
-    funcion2On;
-    servoVelocidad = (int)mssg[1];
-    servoVelocidad = map(servoVelocidad, 0, 100, 0, 10);
+void Funcion2(ServoOn) {
+  if(ServoOn){
+    servoVelocidad = int(mssg);
     if (servoDireccion)
     {
-    posicionDelServo += 1 + servoVelocidad;
-    if (posicionDelServo >= 180)
-      servoDireccion = false;
+      posicionDelServo += 20;
+      if (posicionDelServo >= 180) {
+        servoDireccion = false;
+      }
     }
     else
     {
-    posicionDelServo -= (servoVelocidad + 1);
-    if (posicionDelServo <= 0 )
-      servoDireccion = true;
+      posicionDelServo -= 20;
+      if (posicionDelServo <= 0 ) {
+        servoDireccion = true;
+      }
+
     }
+    delay(servoVelocidad*10);
     servoUsado.write(posicionDelServo);
-    Transformador(posicionDelServo / 12);*/
+  }
 }
 /*
     Función 03:
@@ -228,4 +190,3 @@ void Transformador(int numeroParaTransformar)
   c = numeroParaTransformar / 4 % 2;
   d = numeroParaTransformar / 8 % 2;
 }
-
