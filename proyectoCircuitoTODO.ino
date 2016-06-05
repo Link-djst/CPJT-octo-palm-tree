@@ -144,7 +144,7 @@ void Funcion2(ServoOn) {
       }
 
     }
-    delay(servoVelocidad*10);
+    delay(servoVelocidad);
     servoUsado.write(posicionDelServo);
   }
 }
