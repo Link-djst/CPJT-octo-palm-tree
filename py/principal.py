@@ -42,18 +42,18 @@ def funcionS2():
 
 def enviar():
     if switch1["text"]=="1" and switch2["text"]=="1":
-        # ser.write(bytes('d')
+        # ser.write(bytes('d'))
         print('F4')
     elif switch1["text"]=="0" and switch2["text"]=="0":
-        # ser.write(bytes('a')
+        # ser.write(bytes('a'))
         print('++')
 
 def enviar2():
     if switch1["text"]=="1" and switch2["text"]=="1":
-        # ser.write(bytes('c')
+        # ser.write(bytes('c'))
         print('F4')
     elif switch1["text"]=="0" and switch2["text"]=="0":
-        # ser.write(bytes('z')
+        # ser.write(bytes('z'))
         print('--')
 
 def barrita1(val):
@@ -66,15 +66,15 @@ def barrita2(val):
     if switch1["text"]=="1" and switch2["text"]=="0":
         if (var2.get() == 1):
             print val
-            #ser.write(bytes(val)
+            #ser.write(bytes(val))
 
 def barrita1checkb():
     print var1.get()
-    #ser.write(bytes('s', 'UTF-8'))
+    #ser.write(bytes('s'))
 
 def barrita2checkb():
     print var2.get()
-    #ser.write(bytes('x', 'UTF-8'))
+    #ser.write(bytes('x'))
 
 control=Tk()
 control.geometry("215x300")
@@ -92,9 +92,9 @@ switch2 = Button(text="0", width=12, relief="raised", bg="#00ACC1",command=funci
 led1 = Button(text="1", height=5, width=5, bg="#04CAE2", command=enviar)
 led2 = Button(text="2", height=5, width=5, bg="#04CAE2", command=enviar2)
 
-w1 = Scale(control, from_=0, to=100, resolution=1,orient=HORIZONTAL, command=barrita1)
+w1 = Scale(control, from_=0, to=9, resolution=1,orient=HORIZONTAL, command=barrita1)
 b1 = Checkbutton(control, text="Barra 1", variable=var1,command=barrita1checkb)
-w2 = Scale(control, from_=0, to=100, resolution=1,orient=HORIZONTAL, command=barrita2)
+w2 = Scale(control, from_=0, to=9, resolution=1,orient=HORIZONTAL, command=barrita2)
 b2 = Checkbutton(control, text="Barra 2", variable=var2,command=barrita2checkb)
 entradaA = Entry(control, bd=5)
 

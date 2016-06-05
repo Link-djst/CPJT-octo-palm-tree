@@ -155,7 +155,7 @@ void Funcion2(ServoOn) {
 */
 void Funcion3() {
   bottonPrimeraVezPresionado = false;
-  potenciometroMap = mssg[1]- '0';
+  potenciometroMap = int(mssg);
   potenciometroMap = map (potenciometroMap, 0, 1023, 1, 4);
   contadorGradualmente = pow(2, potenciometroMap) - 1;
   Transformador(contadorGradualmente);
