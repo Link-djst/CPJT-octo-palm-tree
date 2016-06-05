@@ -94,7 +94,7 @@ led2 = Button(text="2", height=5, width=5, bg="#04CAE2", command=enviar2)
 
 w1 = Scale(control, from_=0, to=9, resolution=1,orient=HORIZONTAL, command=barrita1)
 b1 = Checkbutton(control, text="Barra 1", variable=var1,command=barrita1checkb)
-w2 = Scale(control, from_=0, to=9, resolution=1,orient=HORIZONTAL, command=barrita2)
+w2 = Scale(control, from_=0, to=4 resolution=1,orient=HORIZONTAL, command=barrita2)
 b2 = Checkbutton(control, text="Barra 2", variable=var2,command=barrita2checkb)
 entradaA = Entry(control, bd=5)
 
