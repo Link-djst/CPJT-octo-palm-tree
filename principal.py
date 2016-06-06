@@ -65,7 +65,8 @@ def barrita1(val):
 def barrita2(val):
     if switch1["text"]=="1" and switch2["text"]=="0":
         if (var2.get() == 1):
-            print val
+            val = int(val)%7;
+            print val;
             ser.write(bytes(val))
 
 def barrita1checkb():
@@ -98,9 +99,9 @@ switch2 = Button(text="0", width=12, relief="raised", bg="#00ACC1",command=funci
 led1 = Button(text="1", height=5, width=5, bg="#04CAE2", command=enviar)
 led2 = Button(text="2", height=5, width=5, bg="#04CAE2", command=enviar2)
 
-w1 = Scale(control, from_=0, to=9, resolution=1,orient=HORIZONTAL, command=barrita1)
+w1 = Scale(control, from_=0, to=5, resolution=1,orient=HORIZONTAL, command=barrita1)
 b1 = Checkbutton(control, text="Barra 1", variable=var1,command=barrita1checkb)
-w2 = Scale(control, from_=0, to=4 resolution=1,orient=HORIZONTAL, command=barrita2)
+w2 = Scale(control, from_=0, to=32,resolution=1,orient=HORIZONTAL, command=barrita2)
 b2 = Checkbutton(control, text="Barra 2", variable=var2,command=barrita2checkb)
 entradaA = Entry(control, bd=5)
 
@@ -111,8 +112,8 @@ toggle_btn.place(x=40,y=270)
 switch1.place(x=10,y=135)
 switch2.place(x=110,y=135)
 
-led1.place(x=10,y=175)
-led2.place(x=55,y=175)
+led1.place(x=40,y=175)
+led2.place(x=95,y=175)
 
 
 w1.place(x=20,y=45)
