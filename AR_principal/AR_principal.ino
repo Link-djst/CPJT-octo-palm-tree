@@ -29,6 +29,7 @@ int contadorGradualmente = 1;
 //funcion4
 bool bottonPrimeraVezPresionado = false;
 int randomNumberForPins;
+int lastRandomNumberForPins;
 bool bottonSegundaVezPresionado = false;
 
 bool ServoOn = false;
@@ -68,31 +69,39 @@ void loop()
     switch (mssg) {
       case 'a':
         Funcion1(1);
+        lastRandomNumberForPins = 0;
         break;
       case 'z':
         Funcion1(2);
+        lastRandomNumberForPins = 0;
         break;
       case 's':
         ServoOn = true;
+        lastRandomNumberForPins = 0;
         break;
       case 'x':
         LEDsOn = true;
-        Funcion3();
+        lastRandomNumberForPins = 0;
+        Funcion3(LEDsOn);
         break;
       case 'd':
         Funcion4(1);
         break;
       case 'c':
         Funcion4(2);
+        lastRandomNumberForPins = 0;
         break;
       case 'f':
         ServoOn = false;
+        lastRandomNumberForPins = 0;
         break;
       case 'v':
         LEDsOn = false;
+        lastRandomNumberForPins = 0;
         break;
     }
   }
+  RandPin(bottonPrimeraVezPresionado);
   Funcion2(ServoOn);
   Funcion3(LEDsOn);
 }
@@ -193,18 +202,96 @@ void Funcion3(bool LEDsOn) {
     estaba encendido.
 */
 void Funcion4(int bottonPresionado) {
-  if (bottonPrimeraVezPresionado) {
-    bottonSegundaVezPresionado = true;
-    numeroEstatico = randomNumberForPins;
-  }
   if (bottonPresionado == 1) {
-    bottonPrimeraVezPresionado = true;
+    if(bottonPrimeraVezPresionado == false){
+        bottonPrimeraVezPresionado = true;
+    } else {
+      bottonPrimeraVezPresionado = false;
+    }
   }
   if (bottonPresionado == 2)
   {
     Transformador(15); //Enciende todos los numeros
     todosEnsendidos = true;
   }
+}
+
+void RandPin(bottonPrimeraVezPresionado){
+  randomNumberForPins = random(0,4);
+  if(bottonPrimeraVezPresionado){
+    if(randomNumberForPins == 0)
+    {
+      digitalWrite(11, 0);
+      digitalWrite(6, 0);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(randomNumberForPins == 1)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 0);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(randomNumberForPins == 2)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(randomNumberForPins == 3)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 1);
+      digitalWrite(3, 0);
+    }
+    if(randomNumberForPins == 4)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 1);
+      digitalWrite(3, 1);
+    }
+  } else {
+    if(lastRandomNumberForPins == 0)
+    {
+      digitalWrite(11, 0);
+      digitalWrite(6, 0);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(lastRandomNumberForPins == 1)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 0);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(lastRandomNumberForPins == 2)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 0);
+      digitalWrite(3, 0);
+    }
+    if(lastRandomNumberForPins == 3)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 1);
+      digitalWrite(3, 0);
+    }
+    if(lastRandomNumberForPins == 4)
+    {
+      digitalWrite(11, 1);
+      digitalWrite(6, 1);
+      digitalWrite(5, 1);
+      digitalWrite(3, 1);
+    }
+  }
+  lastRandomNumberForPins = randomNumberForPins;
 }
 //Transformador: transforma a binario un numero y los guarda en a,b,c,d
 void Transformador(int numeroParaTransformar)
